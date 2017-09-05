@@ -6,6 +6,7 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var lessMiddleware = require('less-middleware');
 
+var security = require('./services/security');
 var index = require('./routes/index');
 var users = require('./routes/users');
 
@@ -24,6 +25,7 @@ app.use(cookieParser());
 app.use(lessMiddleware(path.join(__dirname, 'public')));
 app.use(express.static(path.join(__dirname, 'public')));
 
+app.use(security.passport.initialize());
 app.use('/', index);
 app.use('/users', users);
 
