@@ -20,7 +20,7 @@ router.post('/login', function(req, res, next) {
       res.status(401).json({ message: "wrong password" });
     } else {
       var payload = { id: user.id };
-      var token = jwt.sign(payload, security.jwtOptions.secretOrKey);
+      var token = jwt.sign(payload, security.jwtOptions.secretOrKey, { expiresIn: 300 });
 
       res.status(200).json({ message: "ok", token: token });
     }
