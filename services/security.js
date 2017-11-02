@@ -9,7 +9,7 @@ var accounts = require('../services/users');
 
 var jwtOptions = {}
 jwtOptions.jwtFromRequest = ExtractJwt.fromAuthHeaderWithScheme('jwt');
-jwtOptions.secretOrKey = 'my-super-cool-secret-key';
+jwtOptions.secretOrKey = process.env.JWT_SECURE;
 
 var strategy = new JwtStrategy(jwtOptions, function(jwt_payload, next) {
   console.log('payload received', jwt_payload);
